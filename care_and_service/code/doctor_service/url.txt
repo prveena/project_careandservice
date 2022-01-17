@@ -1,0 +1,6 @@
+from django.conf.urls import url
+from doctor_service import views
+
+urlpatterns=[
+    url('docserv/',views.doct),
+]

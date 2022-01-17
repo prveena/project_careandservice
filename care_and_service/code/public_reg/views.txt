@@ -1,0 +1,36 @@
+from django.shortcuts import render
+from public_registration.models import PublicRegistration
+
+# Create your views here.
+
+def pub_reg(request):
+    if request.method=="POST":
+        obj=PublicRegistration()
+        obj.login_id=1
+        obj.name=request.POST.get('name')
+        obj.address=request.POST.get('Address')
+        obj.pincode=request.POST.get('pincode')
+        obj.email=request.POST.get('email')
+        obj.mob=request.POST.get('mono')
+
+        obj.save()
+    return render(request,"public_registration/public registration.html")
+def view_pub_reg(request):
+    ob=PublicRegistration.objects.all()
+    context={
+        'value':ob,
+    }
+    return render(request,"public_registration/view_pub_reg.html",context)
+
+def accept_pub(request,id):
+    obj=PublicRegistration.objects.get(public_id=id)
+    obj.status="Accepted"
+    obj.save()
+    return view_pub_reg(request)
+
+def reject_pub(request,id):
+    obj=PublicRegistration.objects.get(public_id=id)
+    obj.status="Rejected"
+    obj.save()
+    return view_pub_reg(request)
+

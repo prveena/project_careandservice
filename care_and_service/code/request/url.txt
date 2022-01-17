@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from request import views
+
+urlpatterns=[
+    url('posreq/',views.post_req),
+    url('vieereqes/',views.view_req),
+    url('accept/(?P<id>\w+)',views.accept_req,name='accept'),
+    url('reject/(?P<id>\w+)',views.reject_pub,name='reject')
+]

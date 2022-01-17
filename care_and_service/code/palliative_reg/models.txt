@@ -1,0 +1,20 @@
+from django.db import models
+
+# Create your models here.
+
+class PalliativeRegistration(models.Model):
+    unit_id = models.AutoField(primary_key=True)
+    login_id = models.IntegerField()
+    address = models.CharField(max_length=100)
+    pincode = models.IntegerField()
+    email = models.CharField(max_length=50)
+    mob1 = models.CharField(max_length=15)
+    mob2 = models.CharField(max_length=15)
+    status = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'palliative_registration'
+
+
+

@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from public_registration import views
+
+urlpatterns=[
+    url('pub_regs/',views.pub_reg),
+    url('view_pub_reg',views.view_pub_reg),
+    url('accept/(?P<id>\w+)',views.accept_pub,name='accept'),
+    url('reject/(?P<id>\w+)',views.reject_pub,name='reject')
+]

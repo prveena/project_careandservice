@@ -1,0 +1,36 @@
+from django.shortcuts import render
+from palliative_registration.models import PalliativeRegistration
+
+# Create your views here.
+
+def pal_reg(request):
+    if request.method=="POST":
+        obj=PalliativeRegistration()
+        obj.login_id=1
+
+        obj.address=request.POST.get('Address')
+        obj.pincode=request.POST.get('pincode')
+        obj.email=request.POST.get('email')
+        obj.mob1=request.POST.get('mobno1')
+        obj.mob2=request.POST.get('mobno2')
+
+        obj.save()
+    return render(request, "palliative_registration/paliative registration.html")
+def pal_view(request):
+    ob=PalliativeRegistration.objects.all()
+    context={
+        'value':ob,
+    }
+    return render(request,"palliative_registration/view_pal_reg.html",context)
+
+def accept_pal(request,id):
+    obj=PalliativeRegistration.objects.get(unit_id=id)
+    obj.status="Accepted"
+    obj.save()
+    return pal_view(request)
+
+def reject_pal(request,id):
+    obj=PalliativeRegistration.objects.get(unit_id=id)
+    obj.status="Rejected"
+    obj.save()
+    return pal_view(request)

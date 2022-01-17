@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from donation import views
+
+urlpatterns=[
+    url('pos_don/',views.post_dontion),
+    url('vie_don/',views.view_dontion),
+    url('accept/(?P<id>\w+)',views.accept_don,name='accept'),
+    url('reject/(?P<id>\w+)',views.reject_don,name='reject')
+]

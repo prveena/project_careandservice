@@ -1,0 +1,44 @@
+from django.shortcuts import render
+from request.models import  Request
+import datetime
+
+# Create your views here.
+
+def post_req(request):
+    if request.method=="POST":
+        obj=Request()
+        obj.public_id=1
+        obj.unit_id=1
+        obj.disease_id=1
+        obj.name_patient=request.POST.get('nameofpatient')
+        obj.type_disease=request.POST.get('disease')
+        obj.other_disease=request.POST.get('other_d')
+        obj.service_request=request.POST.get('service')
+        obj.other_service=request.POST.get('other_s')
+        obj.equipment_request=request.POST.get('Equipment')
+        obj.other=request.POST.get('other')
+        obj.date=datetime.datetime.today()
+        obj.time=datetime.datetime.today()
+        obj.save()
+    return render(request,"request/request.html")
+
+
+def view_req(request):
+    ob=Request.objects.all()
+    context={
+        'value':ob,
+    }
+    return render(request,"request/view request.html",context)
+
+def accept_req(request,id):
+    obj=Request.objects.get(request_id=id)
+    obj.status="Accepted"
+
+    obj.save()
+    return view_req(request)
+
+def reject_pub(request,id):
+    obj=Request.objects.get(request_id=id)
+    obj.status="Rejected"
+    obj.save()
+    return view_req(request)

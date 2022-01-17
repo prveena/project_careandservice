@@ -1,0 +1,16 @@
+from django.db import models
+
+# Create your models here.
+
+class Feedback(models.Model):
+    field_id = models.AutoField(primary_key=True)
+    public_id = models.IntegerField()
+    unit_id = models.IntegerField()
+    feedback = models.CharField(max_length=100)
+    date = models.DateField()
+    time = models.TimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'feedback'
+

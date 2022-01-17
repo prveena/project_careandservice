@@ -1,0 +1,29 @@
+from django.shortcuts import render
+from availability_service.models import AvailabilityService
+
+# Create your views here.
+def add_serv(request):
+    if request.method=="POST":
+        obj=AvailabilityService()
+        obj.item=request.POST.get('service')
+        obj.public_id=1
+        obj.unit_id=1
+        obj.doctor_id=1
+        obj.existing_no=1
+        obj.remaining=1
+        obj.save()
+    return render(request,"availability_service/add_service.html")
+
+
+def availability_ser(request):
+    return render(request,"availability_service/availability_service.html")
+
+
+
+def delete_ser(request):
+    return render(request,"availability_service/delete_service.html")
+
+
+def services(request):
+
+    return render(request,"availability_service/sevice.html")

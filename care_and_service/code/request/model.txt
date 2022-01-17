@@ -1,0 +1,26 @@
+from django.db import models
+
+# Create your models here.
+
+class Request(models.Model):
+    request_id = models.AutoField(primary_key=True)
+    public_id = models.IntegerField()
+    unit_id = models.IntegerField()
+    disease_id = models.IntegerField()
+    name_patient = models.CharField(max_length=50)
+    type_disease = models.CharField(max_length=50)
+    other_disease = models.CharField(max_length=50)
+    service_request = models.CharField(max_length=50)
+    other_service = models.CharField(max_length=50)
+    equipment_request = models.CharField(max_length=50)
+    other = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)
+    time = models.TimeField()
+    date = models.DateField()
+
+    class Meta:
+        managed = False
+        db_table = 'request'
+
+
+

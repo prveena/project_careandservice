@@ -1,0 +1,20 @@
+from django.db import models
+
+# Create your models here.
+
+class Donation(models.Model):
+    donation_id = models.AutoField(primary_key=True)
+    public_id = models.IntegerField()
+    unit_id = models.IntegerField()
+    donation = models.CharField(max_length=50)
+    other = models.CharField(max_length=50)
+    value = models.IntegerField()
+    date = models.DateField()
+    time = models.TimeField()
+    status = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'donation'
+
+

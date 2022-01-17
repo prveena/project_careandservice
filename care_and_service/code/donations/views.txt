@@ -1,0 +1,36 @@
+
+from django.shortcuts import render
+from donation.models import Donation
+import datetime
+# Create your views here.
+
+def post_dontion(request):
+    if request.method=="POST":
+        obj=Donation()
+        obj.donation=request.POST.get('donation')
+        obj.other=request.POST.get('other_d')
+        obj.value=request.POST.get('no')
+        obj.public_id=1
+        obj.unit_id=1
+        obj.date=datetime.datetime.today()
+        obj.time=datetime.datetime.today()
+        obj.save()
+    return render(request,"donation/donation.html")
+
+def view_dontion(request):
+    ob=Donation.objects.all()
+    contexts={
+        'value':ob
+    }
+    return render(request,"donation/view donation.html",contexts)
+
+def accept_don(request,id):
+    obj=Donation.objects.get(donation_id=id)
+    obj.status='Accepted'
+    obj.save()
+    return  view_dontion(request)
+def reject_don(request,id):
+    obj=Donation.objects.get(donation_id=id)
+    obj.status='Rejected'
+    obj.save()
+    return view_dontion(request)

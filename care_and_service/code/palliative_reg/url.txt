@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from palliative_registration import views
+
+urlpatterns=[
+    url('pall_regs/',views.pal_reg),
+    url('view_pal_reg/',views.pal_view),
+    url('accept/(?P<id>\w+)',views.accept_pal,name='accept'),
+    url('reject/(?P<id>\w+)', views.reject_pal, name='reject')
+]

@@ -1,0 +1,8 @@
+from django.conf.urls import url
+from availability_service import views
+
+urlpatterns=[
+    url('add_ser/',views.add_serv),
+    url('avail_serv',views.availability_ser),
+    url('del_serv/',views.delete_ser),
+    url('serv/',views.services)

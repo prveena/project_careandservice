@@ -1,0 +1,16 @@
+from django.db import models
+
+# Create your models here.
+class AvailabilityService(models.Model):
+    service_id = models.AutoField(primary_key=True)
+    unit_id = models.IntegerField()
+    public_id = models.IntegerField()
+    doctor_id = models.IntegerField()
+    item = models.CharField(max_length=50)
+    existing_no = models.IntegerField()
+    remaining = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'availability_service'
+
